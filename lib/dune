@@ -1,0 +1,4 @@
+(library
+ (public_name xcursor)
+ (name xcursor)
+ (libraries angstrom bigstringaf unix logs.fmt))

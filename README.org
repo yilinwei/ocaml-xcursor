@@ -1,0 +1,16 @@
+* xcursor
+
+xcursor is a pure implementation of the ~xcursor~ format which is used to parse cursors for both X and Wayland.
+
+** Examples
+
+Exampes are found in the ~./examples~ directory.
+
+*** wayland_example
+
+Creates a wayland surface which sets the cursor on entry. The first argument is a path to the cursor file to use.
+An example cursor file is bundled in the project under ~./test/Adwaita/cursors/pointer~.
+
+#+BEGIN_SRC bash
+    dune exec example/wayland_example.exe -- ./test/Adwaita/cursors/pointer
+#+END_SRC

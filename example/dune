@@ -1,0 +1,3 @@
+(executable
+ (name wayland_example)
+ (libraries wayland wayland.protocols lwt.unix logs xcursor))
