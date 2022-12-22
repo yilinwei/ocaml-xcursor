@@ -4,5 +4,8 @@
 
 (rule
  (alias runtest)
- (deps ./cursor_test.exe (glob_files "Adwaita/cursors/*"))
- (action (run %{deps})))
+ (deps
+  ./cursor_test.exe
+  (glob_files "Adwaita/cursors/*"))
+ (action
+  (run %{deps})))

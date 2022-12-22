@@ -14,6 +14,7 @@
         "dune-project"
         (nix-filter.lib.inDirectory "bin")
         (nix-filter.lib.inDirectory "lib")
+        (nix-filter.lib.inDirectory "example")
         (nix-filter.lib.inDirectory "test")
       ];
     };
