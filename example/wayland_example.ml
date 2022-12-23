@@ -18,7 +18,7 @@ let draw_cursor serial t pointer =
   let fd = Unix.(openfile t.file [ O_RDONLY ] 0) in
   let cursor =
     Result.bind
-      (Xcursor.Cursor.from_fd fd
+      (Xcursor.Cursor.of_descr fd
       |> Result.map Xcursor.Cursor.images
       |> Result.map Seq.uncons)
       (function Some (head, _) -> head | _ -> Error "empty sequence")

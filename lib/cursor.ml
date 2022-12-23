@@ -6,17 +6,21 @@ type t = { header : Header.t; data : Bigstringaf.t }
 
 open Angstrom
 
-let from_bigstring data =
+let of_bigstring data =
   parse_bigstring ~consume:Consume.Prefix Header.parser data
   |> Result.map (fun header -> { header; data })
 
-let from_fd fd =
+let of_descr ?pos ?size descr =
   Unix.(
-    let { st_size; _ } = fstat fd in
-    let ga =
-      Unix.map_file fd Bigarray.Char Bigarray.c_layout false [| st_size |]
+    let size =
+      match size with Some size -> size | None -> (fstat descr).st_size
     in
-    Bigarray.array1_of_genarray ga |> from_bigstring)
+    let ga =
+      Unix.map_file
+        ?pos:(Option.map Int64.of_int pos)
+        descr Bigarray.Char Bigarray.c_layout false [| size |]
+    in
+    Bigarray.array1_of_genarray ga |> of_bigstring)
 
 open Header.Index
 

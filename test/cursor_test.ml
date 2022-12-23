@@ -2,7 +2,7 @@ open Xcursor
 
 let test_cursor file =
   let fd = Unix.(openfile file [ O_RDONLY ] 0) in
-  let ret = Cursor.from_fd fd in
+  let ret = Cursor.of_descr fd in
   assert (Result.is_ok ret);
   let cursor = Result.get_ok ret in
   assert (Cursor.toc_len cursor > 0);

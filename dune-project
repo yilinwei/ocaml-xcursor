@@ -12,8 +12,10 @@
 
 (package
  (name xcursor)
- (synopsis "Xcursor")
- (description "A pure implementation of Xcursor in Ocaml")
+ (synopsis "A pure implementation of Xcursor in Ocaml")
+ (description "Xcursor is a de-facto standard for using cursors on Linux systems from Freedesktop. It defines a set
+ of standard paths to search, a file format and a configuration format for users to customise cursors for desktop
+ applications.")
  (version 0.1.0)
  (depends
    (ocaml (>= 4.13.0))

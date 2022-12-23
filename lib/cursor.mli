@@ -5,10 +5,10 @@ module Image = Cursor_image
 type t = { header : Header.t; data : Bigstringaf.t }
 (** Cursor file with parsed header. *)
 
-val from_bigstring : Bigstringaf.t -> (t, string) result
+val of_bigstring : Bigstringaf.t -> (t, string) result
 (** Get a cursor from parsing a bigstring. *)
 
-val from_fd : Unix.file_descr -> (t, string) result
+val of_descr : ?pos:int -> ?size:int -> Unix.file_descr -> (t, string) result
 (** Get a cursor from parsing a memory-mapped a Unix file descriptor.
 
  The file descriptor must have at least read permissions. *)
