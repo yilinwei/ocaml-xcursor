@@ -16,7 +16,7 @@
  (description "A pure implementation of Xcursor in Ocaml")
  (version 0.1.0)
  (depends
-   (ocaml (>= 4.14.0))
+   (ocaml (>= 4.13.0))
    (bigstringaf (>= 0.9.0))
    (angstrom (>= 0.15.0)))
  (tags
