@@ -7,11 +7,23 @@ let magic = string "Xcur"
 
 module Index = struct
   module Type = struct
-    type t = Comment | Image of int
+    type comment_subtype = Copyright | License | Other
+
+    let comment_subtype_parser =
+      any_card32 >>= function
+      | 1 -> return Copyright
+      | 2 -> return License
+      | 3 -> return Other
+      | n -> fail (Printf.sprintf "invalid comment subtype '%i'" n)
+
+    type t = Comment of comment_subtype | Image of int
 
     let image_type_parser = card32 0xfffd0002
     let image_parser = image_type_parser *> any_card32 >>| fun n -> Image n
-    let comment_parser = card32 0xfffe001 *> any_card32 *> return Comment
+
+    let comment_parser =
+      card32 0xfffe001 *> comment_subtype_parser >>| fun t -> Comment t
+
     let parser = image_parser <|> comment_parser
   end
 

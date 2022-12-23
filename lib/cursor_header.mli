@@ -1,7 +1,9 @@
 module Index : sig
   module Type : sig
-    type t = Comment | Image of int
+    type comment_subtype = Copyright | License | Other
+    type t = Comment of comment_subtype | Image of int
 
+    val comment_subtype_parser : comment_subtype Angstrom.t
     val image_type_parser : unit Angstrom.t
     val image_parser : t Angstrom.t
     val comment_parser : t Angstrom.t
